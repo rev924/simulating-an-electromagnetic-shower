@@ -1,31 +1,41 @@
-La richiesta del progetto riguardava la simulazione di uno sciame a partire da un singolo fotone, indagando la dipendenza dall'angolo di incidenza.
+The project involved simulating an electromagnetic shower initiated by a single photon, investigating its dependence on the angle of incidence.
 
-Lo sciame avviene a 20km e il rilevatore è posto a 4km dal suolo.
-Per lo studio si utilizza un parametro chiamato cammino libero medio(lunghezza di radiazione) X0, questo parametro rappresenta anche l'unità di misura per la perdità di radiazione.
-Infatti ad una profondità x l'energia residua sarà E(x)=exp[-x/X0], il valore di X= utilizzato in questo caso è X0=7\times10^4cm.
-Le particelle coinvolte, elettroni e positroni sono cariche allora perdono energia per ionizzazione questo è il processo dominante, un fenomeno che a grande scala sembra continuo.
-Mentre per i fotoni il processo dominante è la produzione di coppie elettrone-positrone con un libero cammino pari a 9X0/7.
-Espresso il percorso interno in unità di lunghezze di radiazione t=x/X0 si ha che il numero di particelle sarà pari a n = 2^t.
-Data l'energia delle perticelle incidenti E_0, l'energia di ogni particella sarà E(t)=E_0/2^t, avrò il massimo per E(t)=E_C.
-Allora al momento della profondità massima dello sciame avremo t_max e quindi t_max=ln(E_0/E_C)/ln2. 
+The shower develops at an altitude of 20 km, while the detector is located 4 km above ground level.
 
-Per modellizzare questo fenomeno si utilizza il modello di Rossi.
-Ogni interazione avviene dopo una lunghezza di interazione, ogni particella secondaria eredita metà energia della madre, per quanto riguarda le singole particelle:
-l'interazione di un elettrone-positrone con energia E porta alla produzione di un fotone e un elettrone o positrone, mentre un fotone con energia E genera un elettrone ed un positrone.
-Il processo si arresta quando l'energia degli elettroni scende sotto valore di energia critica E_c, l'energia quando la perdita per ionizzazione eguaglia quella per radiazione. 
+The study uses a parameter called the mean free path (radiation length) X0, which also serves as the unit of measurement for radiative energy loss. At a depth x, the residual energy is given by E(x)=exp[-x/X0], where the value used in this case is X0=7×10^4 cm.
 
-L'utente può scegliere: l'energia iniziale tra 1 e 100 TeV, il passo di profondità "s" tra zero e uno (compreso).
-Inoltre viene svolto uno studio statistico chiedendo all'utente il numero di eventi da simulare.
+The particles involved, electrons and positrons, are charged and therefore lose energy through ionization, which is the dominant process. On a large scale, this phenomenon appears continuous.
 
-Il programma restituisce il profilo dei tre sciami a rispettivamente 0, 20 e 40 gradi. 
-Lo studio statistico invece rappresenta un istogramma che ci da la densità rispetto al numero di hit per i tre eventi si è inoltre sviluppato un fit con uno studio lognormale, poiché ho un fenomeno di tipo stocastico, per verificare l'andamento. 
-Il fit lognormale restituisce due parametri \mu e \sigma, il primo rappresenta la media della distribuzione del \ln(N) mentre il secondo la deviazione standard del \ln(N). Con il significato di media e fluttuazione dello sciame.
-Il grafico degli istogrammi e il fit è stato sviluppato in con gli assi logaritmici e con un numero di bins logaritmici, in modo tale da caretterizzare meglio il comportamento degli sciami.
+For photons, the dominant process is electron-positron pair production, with a mean free path equal to 9X0/7.
 
-Un altro tipo di studio che è stato svolto è quello che mette in relazione il numero medio di hit al crescere dell'energia al passo s inserito dall'utente. Il tutto fittato con una retta, e il parametro \alpha della retta rappresentano quanto è lineare questa crescita.
-Questo grafico è profondamento legato al passo scelto, fino a circa 0.4s il risultato è in accordo con il modello fisico, oltre inizia ad avere problemi.
+Expressing the path length in units of radiation length, t=x/X0, the number of particles is given by n=2^t. Given the initial energy E_0 of the incident particles, the energy of each particle is E(t)=E_0/2^t. The shower reaches its maximum when E(t)=E_C.
 
-L'ultimo grafico rappresenta come varia il rapporto \sigma/\mu, ad un dato passo s inserito dall'utente, ovvero tra la deviazione standard e la media della distribuzione in rapporto all'energia.
-Anche questo processo è profondamente legato al passo scelto, e fino a circa 0.4s mantiene il comportamento che ci aspettiamo, ovvero decrescente al crescere dell'energia.
+Therefore, at the shower maximum, the corresponding depth t_max is given by:
 
-Le dipendenze degli ultimi due grafici dal passo sono motivate dal fatto che il significato del passo è di quanto considero continuo il processo, se è troppo discretizzato perde il senso fisico e non ottengo un risultato realistico. (es. rapporto \sigma/\mu che cresce con l'energia o il fit di potenza non lineare.)
+t_max=ln(E_0/E_C)/ln2.
+
+To model this phenomenon, the Rossi model is used.
+
+Each interaction occurs after a certain interaction length, and each secondary particle inherits half of its parent particle's energy. More specifically, at the level of individual particles, an electron or positron with energy E produces a photon and an electron or positron, while a photon with energy E produces an electron-positron pair.
+
+The process stops when the energy of the electrons falls below the critical energy E_c, defined as the energy at which ionization losses become equal to radiative losses.
+
+The user can choose the initial energy, ranging from 1 to 100 TeV, and the depth step "s", which can take values between zero and one, inclusive. A statistical study is also performed, for which the user specifies the number of events to simulate.
+
+The program returns the profiles of three showers at incidence angles of 0, 20, and 40 degrees, respectively.
+
+The statistical analysis produces a histogram showing the hit density as a function of the number of hits for the three incidence angles. A log-normal fit is also performed to investigate the distribution, since the phenomenon is stochastic.
+
+The log-normal fit returns two parameters, \mu and \sigma. The first represents the mean of the distribution of ln(N), while the second represents the standard deviation of ln(N). These parameters describe the average behavior and fluctuations of the shower, respectively.
+
+The histogram and the fit are plotted using logarithmic axes and logarithmically spaced bins, allowing the behavior of the showers to be characterized more effectively.
+
+Another study investigates the relationship between the mean number of hits and the initial energy, for the depth step s specified by the user. The data are fitted with a straight line, and the parameter \alpha of the fit quantifies how linearly the number of hits increases with energy.
+
+This plot is strongly dependent on the chosen depth step. For values of s up to approximately 0.4, the results agree with the physical model. Beyond this value, discrepancies begin to appear.
+
+The final plot shows how the ratio \sigma/\mu, corresponding to the ratio between the standard deviation and the mean of the distribution, varies with energy for the depth step s selected by the user.
+
+This result is also strongly dependent on the chosen step. Up to approximately s=0.4, the expected behavior is preserved: the ratio decreases as the energy increases.
+
+The dependence of the last two plots on the depth step is explained by the fact that s determines how continuously the process is treated. If the process is discretized too coarsely, the simulation loses physical meaning and no longer produces realistic results. Examples of this include a ratio \sigma/\mu that increases with energy or a power-law fit that deviates from the expected behavior.
